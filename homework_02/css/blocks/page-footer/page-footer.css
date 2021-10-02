@@ -1,0 +1,15 @@
+@import "_dark/page-footer_dark.css";
+
+.page-footer {
+    padding: 0 10px;
+    background-color: var(--primary-block-bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    color: var(--secondary-text-color);
+}
+
+.page-footer h4{
+    font-weight: normal;
+}

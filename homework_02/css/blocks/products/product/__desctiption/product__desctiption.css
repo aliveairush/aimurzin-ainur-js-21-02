@@ -1,0 +1,6 @@
+.product__description {
+    color: var(--secondary-text-color);
+    font-weight: normal;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

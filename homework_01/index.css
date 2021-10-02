@@ -7,7 +7,7 @@
 
 :root {
     --primary-color: rgb(18,140,70);
-    --primary-bg-color: rgb(239,239,239);
+    --primary-block-bg-color: rgb(239,239,239);
     --primary-link-color: rgb(54,155,202);
     --secondary-text-color: rgb(89,89,89);
     --primary-button-color: rgb(204, 204, 204);
@@ -88,7 +88,7 @@ body {
 
 /*Side section*/
 aside {
-    background-color: var(--primary-bg-color);
+    background-color: var(--primary-block-bg-color);
     padding: 10px 0 ;
 }
 
@@ -151,7 +151,7 @@ aside {
 }
 
 .card {
-    background-color: var(--primary-bg-color);
+    background-color: var(--primary-block-bg-color);
     padding: 10px 10px;
 }
 
@@ -200,7 +200,7 @@ aside {
 /*Page footer*/
 body > footer {
     padding: 0 10px;
-    background-color: var(--primary-bg-color);
+    background-color: var(--primary-block-bg-color);
     display: flex;
     justify-content: space-between;
     align-items: center;

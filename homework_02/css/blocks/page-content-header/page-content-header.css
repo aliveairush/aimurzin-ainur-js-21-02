@@ -1,0 +1,10 @@
+@import "__title/page-content-header__title.css";
+@import "__subtitle/page-content-header__subtitle.css";
+@import "_dark/page-content-header_dark.css";
+
+.page-content-header{
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

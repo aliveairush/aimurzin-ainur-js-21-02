@@ -1,0 +1,4 @@
+.page-header.page-header_dark{
+    background-color: var(--dark-theme-primary-color);
+    color: var(--dark-theme-title-color);
+}

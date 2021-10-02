@@ -1,0 +1,6 @@
+@import "side-panel-category/side-panel-category.css";
+@import "_dark/side-panel_dark.css";
+
+.side-panel{
+    background-color: var(--primary-block-bg-color);
+}

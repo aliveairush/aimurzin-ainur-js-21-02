@@ -1,0 +1,4 @@
+.side-panel.side-panel_dark {
+    background: var(--dark-theme-block-bg-color);
+    color: var(--dark-theme-text-color);
+}

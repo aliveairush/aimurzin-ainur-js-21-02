@@ -1,0 +1,7 @@
+@import "_dark/products__section-header_dark.css";
+
+.products__section-header {
+    padding: 20px 10px;
+    align-content: center;
+}
+

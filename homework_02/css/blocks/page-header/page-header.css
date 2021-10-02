@@ -1,0 +1,12 @@
+@import "__title/page-header__title.css";
+@import "_dark/page-header_dark.css";
+
+.page-header {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    align-content: center;
+}
+
+.page-header-wrap1 {
+    padding: 10px 10px;
+}
