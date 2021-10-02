@@ -1,0 +1,5 @@
+.side-panel-category__content {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 15px;
+}

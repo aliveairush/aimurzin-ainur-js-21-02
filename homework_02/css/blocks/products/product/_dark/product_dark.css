@@ -1,0 +1,36 @@
+.product.product_dark {
+    background-color: var(--dark-theme-block-bg-color);
+}
+
+/*btn */
+.product.product_dark .product__btn {
+    background-color: var(--dark-theme-primary-button-color);
+    color: white;
+}
+
+/*btn */
+.product.product_dark .product__btn {
+    background-color: var(--dark-theme-primary-button-color);
+    color: white;
+}
+.product.product_dark .product__btn:hover {
+    background-color: var(--dark-theme-secondary-button-color);
+}
+
+.product.product_dark .product__btn:active {
+    transform: scale(0.97);
+}
+
+
+/*title*/
+.product.product_dark .product__title {
+    color: var(--dark-theme-link-color);
+}
+
+/*title*/
+.product.product_dark .product__description {
+    color: var(--dark-theme-text-color);
+}
+
+
+

@@ -1,0 +1,13 @@
+.product__image {
+    float: left;
+    margin-right: 10px;
+    width: 80px;
+    height: 80px;
+}
+
+.product__image img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+
+}

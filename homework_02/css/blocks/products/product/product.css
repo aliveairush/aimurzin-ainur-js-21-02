@@ -1,0 +1,19 @@
+@import "__image/product__image.css";
+@import "__title/product__title.css";
+@import "__content/product__content.css";
+@import "__btn/product__btn.css";
+@import "__desctiption/product__desctiption.css";
+
+@import "_dark/product_dark.css";
+
+
+.product {
+    background-color: var(--primary-block-bg-color);
+    display: flex;
+    flex-direction: row;
+    min-width: max-content;
+}
+
+.product-wrap1 {
+    padding: 10px 10px;
+}
