@@ -1,0 +1,7 @@
+.product__title{
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--primary-link-color);
+    font-weight: normal;
+    font-size: 16px;
+}

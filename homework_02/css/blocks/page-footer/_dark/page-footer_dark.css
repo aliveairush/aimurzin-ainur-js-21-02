@@ -1,0 +1,4 @@
+.page-footer.page-footer_dark {
+    color: var(--dark-theme-text-color);
+    background-color: var(--dark-theme-block-bg-color);
+}

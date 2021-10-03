@@ -1,0 +1,7 @@
+.page-content-header.page-content-header_dark  h1 {
+    color: var(--dark-theme-title-secondary-color);
+}
+
+.page-content-header.page-content-header_dark  h2,h3,h4,h5,h5 {
+    color: var(--dark-theme-text-color);
+}

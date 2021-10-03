@@ -1,0 +1,61 @@
+@import "general.css";
+@import "blocks/side-panel/side-panel.css";
+@import "blocks/page-header/page-header.css";
+@import "blocks/products/products.css";
+@import "blocks/page-content-header/page-content-header.css";
+@import "blocks/page-footer/page-footer.css";
+
+
+
+/*Page layout */
+.index-page-layout {
+    display: grid;
+    grid-template-columns: 240px 3fr;
+    grid-template-rows: auto 1fr auto;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.page-header{
+    grid-column: 1 / span 3;
+}
+
+.side-panel{
+    padding: 10px 0 ;
+}
+
+.page-content {
+    grid-column: span 2;
+    align-self: start;
+}
+
+.page-footer{
+    grid-column: span 3;
+}
+
+@media (max-width: 520px) {
+    .side-panel {
+        display: none;
+    }
+}
+
+
+@media (min-width: 690px) and (max-width: 940px){
+
+    .grid-fr-3 {
+        grid-template-columns: auto auto;
+    }
+}
+@media (min-width: 520px) and (max-width: 690px){
+
+    .grid-fr-3 {
+        grid-template-columns: auto;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 520px){
+
+    .grid-fr-3 {
+        grid-template-columns: auto auto;
+    }
+}
