@@ -1,0 +1,53 @@
+@import "general.less";
+@import "blocks/side-panel/side-panel.less";
+@import "blocks/page-header/page-header.less";
+@import "blocks/products/products.less";
+@import "blocks/page-content-header/page-content-header.less";
+@import "blocks/page-footer/page-footer.less";
+
+
+/*Page layout */
+.index-page-layout {
+  display: grid;
+  grid-template-columns: 240px 3fr;
+  grid-template-rows: auto 1fr auto;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.page-header {
+  grid-column: 1 / span 3;
+}
+
+.side-panel {
+  padding: 10px 0;
+}
+
+.page-content {
+  grid-column: span 2;
+  align-self: start;
+}
+
+.page-footer {
+  grid-column: span 3;
+}
+
+@media (max-width: 520px) {
+  .side-panel {
+    display: none;
+  }
+}
+
+// Using power of less
+.grid-fr-3 {
+  @media (min-width: 690px) and (max-width: 940px) {
+    grid-template-columns: auto auto;
+  }
+  @media (min-width: 520px) and (max-width: 690px) {
+    grid-template-columns: auto;
+  }
+
+  @media (min-width: 400px) and (max-width: 520px) {
+    grid-template-columns: auto auto;
+  }
+}

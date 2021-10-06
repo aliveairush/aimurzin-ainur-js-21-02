@@ -1,0 +1,23 @@
+.page-content-header{
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__subtitle{
+        font-weight: lighter;
+    }
+
+    &__title{
+        font-size: 30px;
+        font-weight: bolder;
+    }
+
+    &_dark.page-content-header  h1 {
+        color: var(--dark-theme-title-secondary-color);
+    }
+
+    &_dark.page-content-header  h2,h3,h4,h5,h5 {
+        color: var(--dark-theme-text-color);
+    }
+}
