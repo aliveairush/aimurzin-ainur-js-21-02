@@ -69,6 +69,8 @@ body {
   background-color: var(--primary-color);
   color: #ffffff;
   align-content: center;
+  display: flex;
+  justify-content: space-between;
 }
 .page-header__title {
   font-weight: normal;
@@ -151,11 +153,18 @@ body {
 .product_dark .product__btn:active {
   transform: scale(0.97);
 }
+.product:hover {
+  background-color: #005c94;
+  transition: background-color 5s;
+}
+.product:hover .product__title {
+  color: white;
+}
 .products__section-header {
   padding: 20px 10px;
   align-content: center;
 }
-.products__section-header__section-header_dark.products__section-header {
+.products__section-header_dark {
   color: var(--dark-theme-text-color);
 }
 .page-content-header {
@@ -196,6 +205,72 @@ body {
 }
 .page-footer h4 {
   font-weight: normal;
+}
+.loader-wrap {
+  display: flex;
+}
+.loader {
+  width: 10px;
+  height: 30px;
+  background-color: var(--primary-link-color);
+  margin: 0 3px;
+}
+@-moz-keyframes grow {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes grow {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+@keyframes grow {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+.loader:nth-child(1) {
+  -webkit-animation: grow 1.5s -1s ease-in-out infinite;
+  -moz-animation: grow 1.5s -1s ease-in-out infinite;
+  animation: grow 1.5s -1s ease-in-out infinite;
+}
+.loader:nth-child(2) {
+  -webkit-animation: grow 1.5s -0.7s ease-in-out infinite;
+  -moz-animation: grow 1.5s -0.7s ease-in-out infinite;
+  animation: grow 1.5s -0.7s ease-in-out infinite;
+}
+.loader:nth-child(3) {
+  -webkit-animation: grow 1.5s -0.3s ease-in-out infinite;
+  -moz-animation: grow 1.5s -0.3s ease-in-out infinite;
+  animation: grow 1.5s -0.3s ease-in-out infinite;
 }
 /*Page layout */
 .index-page-layout {
