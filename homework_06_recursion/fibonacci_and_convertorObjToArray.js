@@ -34,18 +34,16 @@ const fib2 = (() => {
  * Функция должна преобразовать массив в объект
  */
 
-const convertArrayToObj = ((array) => {
-    const obj = {};
-    return () => {
-        if (!Array.isArray(array))       // Удостоверяемся что это массив, если не массив то возвращаем значение
-            return array;
-        if (array.length === 2 && typeof array[0] === "string")       // Если текущий массив из двух элементов и первый из низ строка,  значит нужно преобразовать в объект  */
-            obj[array[0]] = convertArrayToObj(array[1])();          // Второй параметр может быть массивом, если и нет то просто вернется значение
-        else  // Раз у нас больше 2 элементов то для каждого элемента вызываем рекурсивно функцию конвертации
-            array.forEach(item => obj[item[0]] = convertArrayToObj(item[1])())
-        return obj;
-    }
-});
+function convertArrayToObj(array){
+    const obj = {}
+    if (!Array.isArray(array))       // Удостоверяемся что это массив, если не массив то возвращаем значение
+        return array;
+    if (array.length === 2 && typeof array[0] === "string")       // Если текущий массив из двух элементов и первый из низ строка,  значит нужно преобразовать в объект  */
+        obj[array[0]] = convertArrayToObj(array[1]);          // Второй параметр может быть массивом, если и нет то просто вернется значение
+    else  // Раз у нас больше 2 элементов то для каждого элемента вызываем рекурсивно функцию конвертации
+        array.forEach(item => obj[item[0]] = convertArrayToObj(item[1]))
+    return obj;
+}
 
 const arrayTask3 = [
     ["name", "Anna"],
@@ -63,6 +61,6 @@ const arrayTask3 = [
     }]
 ];
 
-convertArrayToObj(arrayTask3)();
+convertArrayToObj(arrayTask3);
 
 
