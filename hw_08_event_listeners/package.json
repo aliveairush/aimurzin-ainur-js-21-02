@@ -1,0 +1,29 @@
+{
+  "name": "homework_03",
+  "version": "1.0.0",
+  "description": "Innopolis hw 03 js",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.27.5",
+    "cssnano": "^5.0.8",
+    "gulp": "^4.0.2",
+    "gulp-less": "^5.0.0",
+    "gulp-postcss": "^9.0.1",
+    "less": "^4.1.2",
+    "postcss": "^8.3.9"
+  },
+  "scripts": {
+    "dev": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliveairush/aimurzin-ainur-js-21-02.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aliveairush/aimurzin-ainur-js-21-02/issues"
+  },
+  "homepage": "https://github.com/aliveairush/aimurzin-ainur-js-21-02#readme"
+}
