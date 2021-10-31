@@ -1,0 +1,21 @@
+{
+  "name": "hw_11_typescript",
+  "version": "1.0.0",
+  "description": "Переписать домашнее задание №3 урока №9 с использованием TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.27.5",
+    "browserify": "^17.0.0",
+    "fancy-log": "^1.3.3",
+    "tsify": "^5.0.4",
+    "typescript": "^4.4.4",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^4.0.0",
+    "gulp": "^4.0.2"
+  }
+}
