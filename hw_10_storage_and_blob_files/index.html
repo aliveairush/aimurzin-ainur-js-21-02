@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta content="width=device-width, user-scalable=no" name="viewport"/>
+
+    <script src="index.js" type="module"></script>
+</head>
+<body>
+<div class="container-centered">
+
+</div>
+
+<div>
+    <form class="form" id="formId">
+        <input name="my-file" type="file">
+        <input type="submit">
+    </form>
+</div>
+<div class="gallery">
+
+</div>
+</body>
+<style>
+    .form {
+        margin: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .gallery img {
+        object-fit: cover;
+        max-width: 30%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .container-centered {
+        display: flex;
+        justify-content: center;
+    }
+
+    #loader {
+        height: 30px;
+        width: 100px;
+        position: relative;
+
+    }
+
+    #loader-box {
+        position: relative;
+        width: 10px;
+        height: 10px;
+        background-color: coral;
+    }
+
+</style>
+</html> 
