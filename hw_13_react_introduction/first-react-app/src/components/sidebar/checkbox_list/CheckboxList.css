@@ -1,0 +1,17 @@
+.side-panel-category {
+
+}
+
+.side-panel-category-wrap1 {
+    padding: 0 10px;
+}
+
+.side-panel-category__content {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 15px;
+}
+
+.side-panel-category__content label {
+    margin-left: 5px;
+}

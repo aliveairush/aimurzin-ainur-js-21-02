@@ -1,0 +1,5 @@
+.side-panel{
+    background-color: var(--primary-block-bg-color);
+    height: 100%;
+    padding: 10px 0;
+}
