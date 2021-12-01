@@ -5,19 +5,8 @@ interface IProps {
   limit: number
   changeLimit: (limit: number) => void;
 }
-export default class ChangeLimitButton extends React.Component<IProps, any> {
-  constructor(props: IProps) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
+const ChangeLimitButton = ({ limit, changeLimit }: IProps) => (
+  <span className="change-page-limit" onClick={() => changeLimit(limit)}>{limit}</span>
+);
 
-  handleClick() {
-    this.props.changeLimit(this.props.limit);
-  }
-
-  render() {
-    return (
-      <span className="change-page-limit" onClick={this.handleClick}>{this.props.limit}</span>
-    );
-  }
-}
+export default ChangeLimitButton;
