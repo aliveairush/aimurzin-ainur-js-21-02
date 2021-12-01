@@ -15,8 +15,5 @@ export const getUserList = (
     [APP_ID_FIELD]: APP_ID_VALUE,
   }),
 }).then((response) => response.json())
-  .then((response: UserListResponse) => {
-    console.log(response);
-    callback(response);
-  })
+  .then((response: UserListResponse) => callback(response))
   .catch(errorCallback);

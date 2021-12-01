@@ -27,20 +27,24 @@ class App extends React.Component<{}, IState> {
 
     this.state = initialState;
     this.loadUserList = this.loadUserList.bind(this);
+    this.changeLimit = this.changeLimit.bind(this);
   }
 
   componentDidMount(): void {
     this.loadUserList(this.state.page);
   }
 
-  loadUserList(page: number) {
-    console.log(this.state.limit);
-    getUserList(page, this.state.limit, (resp: UserListResponse) => {
-      console.log(resp);
+  loadUserList(page: number, limit = this.state.limit) {
+    getUserList(page, limit, (resp: UserListResponse) => {
       this.setState({
         userList: resp.data, page: resp.page, totalElements: resp.total, limit: resp.limit,
       });
     });
+  }
+
+  changeLimit(limit: number) {
+    this.setState({ limit });
+    this.loadUserList(0, limit);
   }
 
   render() {
@@ -50,7 +54,7 @@ class App extends React.Component<{}, IState> {
           {(context) => (
             <div className={`App ${context.theme}`}>
               <section className="page-layout">
-                <SectionHeader />
+                <SectionHeader changeLimit={this.changeLimit} />
                 <Userlist userList={this.state.userList} />
                 <SectionFooter
                   loadUserList={this.loadUserList}
@@ -61,7 +65,6 @@ class App extends React.Component<{}, IState> {
               </section>
             </div>
           )}
-
         </ThemeContext.Consumer>
       </ThemeContextProvider>
 

@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode } from 'react';
 
-interface IThemeContext {
+export interface IThemeContext {
   theme: string,
   toggleTheme: any
 }

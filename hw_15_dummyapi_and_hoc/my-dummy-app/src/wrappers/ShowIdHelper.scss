@@ -1,0 +1,24 @@
+.show-id-wrapper {
+  position: relative;
+}
+
+.show-id-wrapper__id {
+  color: #000;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  animation: slideToTop 1s 1 ease forwards ;
+}
+
+@keyframes slideToTop {
+  from {
+    top: 0;
+    opacity: 0;
+
+  }
+  to {
+    top: -1em;
+    opacity: 1;
+  }
+}
