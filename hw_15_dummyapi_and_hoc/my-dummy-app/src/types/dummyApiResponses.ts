@@ -14,3 +14,20 @@ export interface UserType {
 }
 
 export interface UserListResponse extends ListResponseType<UserType> {}
+
+export interface UserProfileType {
+  id?: string;
+  title?: string;
+  firstName?: string;
+  lastName?: string;
+  gender?: string;
+  email?: string;
+  dateOfBirth?: string;
+  registerDate?: string;
+  phone?: string;
+  picture?: string;
+}
+
+export interface ResponseError {
+  error: string;
+}
