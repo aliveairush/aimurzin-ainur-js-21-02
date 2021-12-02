@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 import SectionHeader from './components/sectionHeader/SectionHeader';
 import Userlist from './components/userlist/Userlist';
@@ -21,6 +21,10 @@ const App = () => {
       setLimit(resp.limit);
     });
   };
+
+  useEffect(() => {
+    loadUserList(page, limit);
+  }, []);
 
   const changeLimit = (newLimit: number) => {
     setLimit(newLimit);
