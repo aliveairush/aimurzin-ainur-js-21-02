@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+.App {
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #E7E8E6;
+  transition: all 1s ease;
+
+  &.dark {
+    background-color: #171717;
+    color: white;
+  }
+}
+
+.page-layout {
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
