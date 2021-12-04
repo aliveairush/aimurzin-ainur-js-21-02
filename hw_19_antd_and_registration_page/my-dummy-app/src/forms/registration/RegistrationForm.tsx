@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import {
   Form, Input, Button, DatePicker, Select,
 } from 'antd';
@@ -8,6 +8,59 @@ import { Gender, IUserRegistrationFormType } from '../../types/dummyApiResponses
 
 const { Option } = Select;
 
+// Source https://emailregex.com/
+const emailRegex = '(?:[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:'
+  + '[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:'
+  + '[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9'
+  + ']|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-'
+  + '\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])';
+
+const renderEmailInput = (updateEmail : (e: ChangeEvent<HTMLInputElement>) => void) => (
+  <Form.Item
+    name="email"
+    label="E-mail"
+    hasFeedback
+    rules={[
+      { required: true, message: 'Please enter you Email' },
+      { pattern: new RegExp(emailRegex), message: 'Please check if your email address is correct' },
+    ]}
+  >
+    <Input
+      onChange={(e) => updateEmail(e)}
+    />
+  </Form.Item>
+);
+
+const renderFirstNameInput = (updateFirstname : (e: ChangeEvent<HTMLInputElement>) => void) => (
+  <Form.Item
+    required
+    name="firstName"
+    label="Firstname"
+    hasFeedback
+    rules={[
+      { required: true, message: 'Please enter your first name' },
+      { min: 2, message: 'Minimal length 2 symbols ' },
+      { max: 50, message: 'Maximum length 50 simbols ' }]}
+  >
+    <Input onChange={((e) => updateFirstname(e))} />
+  </Form.Item>
+);
+
+const renderLastNameInput = (updateLastName : (e: ChangeEvent<HTMLInputElement>) => void) => (
+  <Form.Item
+    name="lastName"
+    label="Lastname"
+    hasFeedback
+    rules={[
+      { required: true, message: 'Please enter your last name' },
+      { whitespace: true, message: 'Please enter your last name' },
+      { min: 2, message: 'Minimal length 2 symbols ' },
+      { max: 50, message: 'Maximum length 50 simbols ' }]}
+  >
+    <Input onChange={((e) => updateLastName(e))} />
+  </Form.Item>
+);
+
 const RegistrationForm = () => {
   const [userForm, setUserForm] = useState({
     picture: 'https://randomuser.me/api/portraits/women/58.jpg',
@@ -16,7 +69,7 @@ const RegistrationForm = () => {
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
-      sm: { span: 4 },
+      sm: { span: 5 },
     },
     wrapperCol: {
       xs: { span: 24 },
@@ -47,37 +100,45 @@ const RegistrationForm = () => {
       wrapperCol={formItemLayout.wrapperCol}
       labelCol={formItemLayout.labelCol}
       className="registration-form"
+      fields={[
+        { name: ['picture'], value: userForm.picture },
+      ]}
     >
-      <Form.Item name="email" label="E-mail">
-        <Input onChange={((e) => setUserForm({ ...userForm, email: e.target.value }))} />
-      </Form.Item>
-      {/* TODO Validation length: 2-50 */}
-      <Form.Item name="firstName" label="Firstname">
-        <Input onChange={((e) => setUserForm({ ...userForm, firstName: e.target.value }))} />
-      </Form.Item>
-      {/* TODO Validation length: 2-50 */}
-      <Form.Item name="lastName" label="Lastname">
-        <Input onChange={((e) => setUserForm({ ...userForm, lastName: e.target.value }))} />
-      </Form.Item>
-      <Form.Item name="phone" label="Phone">
+
+      {renderEmailInput(
+        (e : ChangeEvent<HTMLInputElement>) => setUserForm({ ...userForm, email: e.target.value }),
+      )}
+      {renderFirstNameInput(
+        (e : ChangeEvent<HTMLInputElement>) => setUserForm({ ...userForm, firstName: e.target.value }),
+      )}
+      {renderLastNameInput(
+        (e : ChangeEvent<HTMLInputElement>) => setUserForm({ ...userForm, lastName: e.target.value }),
+      )}
+      {/* { Остальные инпуты не так много занимают кода поэтому решил не выносить в константы} */}
+      <Form.Item name="phone" label="Phone" rules={[{ min: 5, message: 'Minimal length 5 symbols ' }]}>
         <Input onChange={((e) => setUserForm({ ...userForm, phone: e.target.value }))} />
       </Form.Item>
+
       <Form.Item name="dateOfBirth" label="Date of birth">
-        <DatePicker onChange={((date) => {
-          setUserForm({ ...userForm, dateOfBirth: date ? date.valueOf().toString() : '' });
-        })}
+        <DatePicker
+          disabledDate={(current) => current.valueOf() > Date.now()}
+          onChange={((date) => {
+            setUserForm({ ...userForm, dateOfBirth: date ? date.valueOf().toString() : '' });
+          })}
         />
-        {/* <Input  /> */}
       </Form.Item>
+
       <Form.Item name="gender" label="Gender">
-        <Select autoClearSearchValue onSelect={(e) => console.log(e)} placeholder="Select gender">
+        <Select onSelect={(e) => setUserForm({ ...userForm, gender: e ? e.valueOf().toString() : '' })} placeholder="Select gender">
           {Object.values(Gender)
             .map((value, index) => <Option key={index} value={value}>{value}</Option>)}
         </Select>
       </Form.Item>
+
       <Form.Item name="picture" label="Picture">
-        <Input defaultValue={userForm.picture} onChange={((e) => setUserForm({ ...userForm, picture: e.target.value }))} />
+        <Input onChange={((e) => setUserForm({ ...userForm, picture: e.target.value }))} />
       </Form.Item>
+
       <Form.Item wrapperCol={tailFormItemLayout.wrapperCol}>
         <Button type="primary" htmlType="submit">
           Register
