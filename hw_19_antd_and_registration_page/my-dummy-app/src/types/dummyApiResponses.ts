@@ -32,17 +32,21 @@ export interface ResponseError {
   error: string;
 }
 
-export enum Gender {
-  Male = 'male',
-  Female = 'female',
-  Other = 'other',
+export class Gender {
+  static nothing = '';
+
+  static male = 'male';
+
+  static female = 'female';
+
+  static other = 'other';
 }
 
 export interface IUserRegistrationFormType {
   title?: string;
   firstName: string;
   lastName: string;
-  gender?: string;
+  gender?: Gender;
   email: string;
   dateOfBirth?: string;
   registerDate?: string;

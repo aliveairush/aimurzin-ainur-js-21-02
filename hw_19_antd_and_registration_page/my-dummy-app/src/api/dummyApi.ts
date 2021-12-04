@@ -2,7 +2,9 @@ import {
   APP_ID_FIELD, APP_ID_VALUE, BASE_URL, LIMIT_PARAM, PAGE_PARAM, USER_URL,
 } from '../constants/dummyApi';
 import { METHOD_GET, METHOD_POST } from '../constants/common';
-import { IUserRegistrationFormType, ResponseError, UserListResponse } from '../types/dummyApiResponses';
+import {
+  IUserRegistrationFormType, ResponseError, UserListResponse, UserProfileType,
+} from '../types/dummyApiResponses';
 
 const doGetRequest = <T>(
   path: string,
@@ -47,7 +49,7 @@ export const getUserById = (
 
 export const postCreateUser = (
   userForm: IUserRegistrationFormType,
-  callback: (resp: any) => void,
+  callback: (resp: UserProfileType) => void,
   errorCallback?: (resp: ResponseError) => void,
   finalCallback?: () => void,
 ) => {
@@ -58,7 +60,10 @@ export const postCreateUser = (
       'Content-Type': 'application/json;charset=utf-8',
     }),
     body: JSON.stringify(userForm),
-  }).then((resp) => resp.json())
+  }).then((resp) => {
+    if (resp.ok) return resp.json();
+    throw new Error('Произошла какая то ошибка :(');
+  })
     .then(callback)
     .catch(errorCallback)
     .finally(finalCallback);

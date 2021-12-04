@@ -8,7 +8,7 @@ interface IProps {
 
 const SectionHeader = ({ changeLimit }: IProps) => (
   <div className="section-header">
-    <h1>Пользователи</h1>
+    <span className="section-header__title">Пользователи</span>
     <div>
       <span>Показать:</span>
       <ChangeLimitButton limit={5} changeLimit={changeLimit} />

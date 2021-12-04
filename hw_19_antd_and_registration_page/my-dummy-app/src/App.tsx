@@ -31,7 +31,7 @@ const App = () => (
       <ThemeContext.Consumer>
         {(context) => (
           <div className={`App ${context.theme}`}>
-            <Layout className="custom-container">
+            <Layout style={{ background: 'inherit', color: 'inherit' }} className="custom-container">
               {renderPageHeader()}
               <Content>
                 <Routes>

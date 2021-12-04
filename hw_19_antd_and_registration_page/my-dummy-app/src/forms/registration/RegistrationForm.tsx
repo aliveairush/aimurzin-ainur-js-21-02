@@ -1,8 +1,9 @@
 import React, { ChangeEvent, useState } from 'react';
 import {
-  Form, Input, Button, DatePicker, Select,
+  Button, DatePicker, Form, Input, Select,
 } from 'antd';
 import './RegistrationForm.scss';
+import { useNavigate } from 'react-router-dom';
 import { postCreateUser } from '../../api/dummyApi';
 import { Gender, IUserRegistrationFormType } from '../../types/dummyApiResponses';
 
@@ -90,8 +91,14 @@ const RegistrationForm = () => {
     },
   };
 
+  const navigate = useNavigate();
+
   const onFormSubmit = () => {
-    postCreateUser(userForm, (resp) => console.log(resp), () => {}, () => {});
+    postCreateUser(userForm, (resp) => {
+      navigate(`/user/${resp.id}`);
+    }, (error) => {
+      alert(error);
+    }, () => {});
   };
 
   return (
@@ -129,7 +136,13 @@ const RegistrationForm = () => {
       </Form.Item>
 
       <Form.Item name="gender" label="Gender">
-        <Select onSelect={(e) => setUserForm({ ...userForm, gender: e ? e.valueOf().toString() : '' })} placeholder="Select gender">
+        <Select
+          placeholder="Select gender"
+          // onSelect={(e) => setUserForm({ ...userForm, gender: e ? Gender[e.valueOf().toString() as keyof Gender] : Gender.OTHER })}
+          onSelect={(e) => {
+            setUserForm({ ...userForm, gender: e ? Gender[e.valueOf() as keyof Gender] : Gender.nothing });
+          }}
+        >
           {Object.values(Gender)
             .map((value, index) => <Option key={index} value={value}>{value}</Option>)}
         </Select>
