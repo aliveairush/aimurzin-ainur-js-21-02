@@ -31,3 +31,21 @@ export interface UserProfileType {
 export interface ResponseError {
   error: string;
 }
+
+export enum Gender {
+  Male = 'male',
+  Female = 'female',
+  Other = 'other',
+}
+
+export interface IUserRegistrationFormType {
+  title?: string;
+  firstName: string;
+  lastName: string;
+  gender?: string;
+  email: string;
+  dateOfBirth?: string;
+  registerDate?: string;
+  phone?: string;
+  picture?: string;
+}

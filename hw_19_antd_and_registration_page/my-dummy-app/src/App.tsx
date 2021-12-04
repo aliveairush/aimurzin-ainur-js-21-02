@@ -13,7 +13,7 @@ import 'antd/dist/antd.css';
 import RegistrationForm from './forms/registration/RegistrationForm';
 
 const renderPageHeader = () => (
-  <Header>
+  <Header className="page-header">
     <Menu mode="horizontal" theme="dark">
       <Menu.Item>
         <Link to="/user">Пользователи</Link>

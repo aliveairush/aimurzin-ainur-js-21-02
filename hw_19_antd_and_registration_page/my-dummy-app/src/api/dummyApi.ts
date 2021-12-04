@@ -1,8 +1,8 @@
 import {
   APP_ID_FIELD, APP_ID_VALUE, BASE_URL, LIMIT_PARAM, PAGE_PARAM, USER_URL,
 } from '../constants/dummyApi';
-import { METHOD_GET } from '../constants/common';
-import { ResponseError, UserListResponse } from '../types/dummyApiResponses';
+import { METHOD_GET, METHOD_POST } from '../constants/common';
+import { IUserRegistrationFormType, ResponseError, UserListResponse } from '../types/dummyApiResponses';
 
 const doGetRequest = <T>(
   path: string,
@@ -43,4 +43,23 @@ export const getUserById = (
   finalCallback?: () => void,
 ) => {
   doGetRequest(`${USER_URL}/${id}`, callback, errorCallback, finalCallback);
+};
+
+export const postCreateUser = (
+  userForm: IUserRegistrationFormType,
+  callback: (resp: any) => void,
+  errorCallback?: (resp: ResponseError) => void,
+  finalCallback?: () => void,
+) => {
+  fetch(`${BASE_URL}/user/create`, {
+    method: METHOD_POST,
+    headers: new Headers({
+      [APP_ID_FIELD]: APP_ID_VALUE,
+      'Content-Type': 'application/json;charset=utf-8',
+    }),
+    body: JSON.stringify(userForm),
+  }).then((resp) => resp.json())
+    .then(callback)
+    .catch(errorCallback)
+    .finally(finalCallback);
 };
