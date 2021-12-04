@@ -32,7 +32,7 @@ const UserListForm = () => {
   };
 
   return (
-    <section className="page-layout">
+    <section>
       <SectionHeader changeLimit={changeLimit} />
       <div className="userlist">
         {userList.map((elem) => (

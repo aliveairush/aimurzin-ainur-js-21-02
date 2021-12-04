@@ -4,9 +4,14 @@
   margin: 0;
 }
 
+h1,h2,h3,h4,h5,h6 {
+  color: inherit;
+}
+
 a {
   color: inherit;
 }
+
 .App {
   margin: 0 auto;
   font-family: 'Arial', sans-serif;
@@ -23,10 +28,34 @@ a {
   }
 }
 
-.page-layout {
-  max-width: 960px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 20px;
+.centered {
+  align-self: center;
+}
+
+.custom-container {
+  padding: 0 15px;
+}
+
+@media (min-width: 575.98px) {
+  .custom-container {
+    padding: 0 calc(50% - 270px);
+  }
+}
+
+@media (min-width: 767.98px) {
+  .custom-container {
+    padding: 0 calc(50% - 360px);
+  }
+}
+
+@media (min-width: 991.98px) {
+  .custom-container {
+    padding: 0 calc(50% - 480px);
+  }
+}
+
+@media (min-width: 1199.98px) {
+  .custom-container {
+    padding: 0 calc(50% - 590px);
+  }
 }
