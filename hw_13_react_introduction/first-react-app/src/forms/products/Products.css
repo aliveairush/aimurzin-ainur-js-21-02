@@ -1,0 +1,21 @@
+
+.products__section-header {
+    padding: 20px 10px;
+    align-content: center;
+}
+
+.page-content-header{
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.page-content-header__title{
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.page-content-header__subtitle{
+    font-weight: lighter;
+}

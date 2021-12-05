@@ -1,0 +1,1 @@
+export const UPLOAD_IMAGE = 'https://api.imgbb.com/1/upload'

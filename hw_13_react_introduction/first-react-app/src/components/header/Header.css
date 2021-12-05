@@ -1,0 +1,12 @@
+.page-header {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    align-content: center;
+}
+
+.page-header-wrap1 {
+    padding: 10px 10px;
+}
+.page-header__title {
+    font-weight: normal;
+}

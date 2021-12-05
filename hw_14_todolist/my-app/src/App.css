@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  min-height: 100vh;
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: center;
+}
+
+.app-content {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+  height: fit-content;
+  margin-top: 20px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+}
