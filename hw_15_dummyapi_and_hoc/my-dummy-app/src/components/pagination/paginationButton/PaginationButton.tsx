@@ -3,28 +3,23 @@ import React from 'react';
 interface IProps {
   pageNumber: number,
   active?: boolean,
-  loadUserList?: (page: number) => void
+  loadUserList: (page: number) => void
 }
-export default class PaginationButton extends React.Component<IProps> {
-  constructor(props: IProps) {
-    super(props);
 
-    this.handleClick = this.handleClick.bind(this);
-  }
+const PaginationButton = ({ pageNumber, active = false, loadUserList }: IProps) => {
+  const handleClick = () => {
+    loadUserList && loadUserList(pageNumber);
+  };
 
-  handleClick() {
-    this.props.loadUserList && this.props.loadUserList(this.props.pageNumber);
-  }
+  return (
+    <button
+      className={active === true ? 'active' : ''}
+      onClick={handleClick}
+      type="button"
+    >
+      {pageNumber + 1}
+    </button>
+  );
+};
 
-  render() {
-    return (
-      <button
-        className={this.props.active === true ? 'active' : ''}
-        onClick={this.handleClick}
-        type="button"
-      >
-        {this.props.pageNumber + 1}
-      </button>
-    );
-  }
-}
+export default PaginationButton;

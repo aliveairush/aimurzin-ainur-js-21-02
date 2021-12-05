@@ -10,18 +10,18 @@ interface IProps {
   loadUserList: (page: number) => void
 }
 
-export default class SectionFooter extends React.Component<IProps, any> {
-  render() {
-    return (
-      <div className="section-footer">
-        <Pagination
-          currentPage={this.props.currentPage}
-          totalElements={this.props.totalElements}
-          limit={this.props.limit}
-          loadUserList={this.props.loadUserList}
-        />
-        <ThemeToggle />
-      </div>
-    );
-  }
-}
+const SectionFooter = ({
+  currentPage, totalElements, limit, loadUserList,
+}: IProps) => (
+  <div className="section-footer">
+    <Pagination
+      currentPage={currentPage}
+      totalElements={totalElements}
+      limit={limit}
+      loadUserList={loadUserList}
+    />
+    <ThemeToggle />
+  </div>
+);
+
+export default SectionFooter;

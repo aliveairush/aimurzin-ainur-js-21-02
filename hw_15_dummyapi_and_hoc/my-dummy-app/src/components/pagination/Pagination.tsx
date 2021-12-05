@@ -9,82 +9,79 @@ interface IProps {
   loadUserList: (page: number) => void
 }
 
-export default class Pagination extends React.Component<IProps, any> {
-  constructor(props: IProps) {
-    super(props);
-  }
-
-  render() {
-    const { currentPage } = this.props;
-    const { totalElements } = this.props;
-    const { limit } = this.props;
-
-    return (
-      <div className="pagination">
-        { currentPage - 3 > 0 && totalElements / limit - currentPage < 2
+const Pagination = ({
+  currentPage, totalElements, limit, loadUserList,
+}: IProps) => (
+  <div className="pagination">
+    { currentPage - 3 > 0 && totalElements / limit - currentPage < 2
       && (
         <PaginationButton
           pageNumber={currentPage - 4}
           key={currentPage - 4}
-          loadUserList={this.props.loadUserList}
+          loadUserList={loadUserList}
         />
       )}
-        { currentPage - 2 > 0 && totalElements / limit - currentPage < 1
+    { currentPage - 2 > 0 && totalElements / limit - currentPage < 1
       && (
         <PaginationButton
           pageNumber={currentPage - 3}
           key={currentPage - 3}
-          loadUserList={this.props.loadUserList}
+          loadUserList={loadUserList}
         />
       )}
-        { currentPage - 1 > 0 && (
-        <PaginationButton
-          pageNumber={currentPage - 2}
-          key={currentPage - 2}
-          loadUserList={this.props.loadUserList}
-        />
-        )}
-        { currentPage > 0 && (
-        <PaginationButton
-          pageNumber={currentPage - 1}
-          key={currentPage - 1}
-          loadUserList={this.props.loadUserList}
-        />
-        )}
-        <PaginationButton pageNumber={currentPage} key={currentPage} active />
-        { currentPage + 1 > 0 && currentPage + 1 < totalElements / limit
+    { currentPage - 1 > 0 && (
+    <PaginationButton
+      pageNumber={currentPage - 2}
+      key={currentPage - 2}
+      loadUserList={loadUserList}
+    />
+    )}
+    { currentPage > 0 && (
+    <PaginationButton
+      pageNumber={currentPage - 1}
+      key={currentPage - 1}
+      loadUserList={loadUserList}
+    />
+    )}
+    <PaginationButton
+      loadUserList={loadUserList}
+      pageNumber={currentPage}
+      key={currentPage}
+      active
+    />
+    { currentPage + 1 > 0 && currentPage + 1 < totalElements / limit
       && (
         <PaginationButton
           pageNumber={currentPage + 1}
           key={currentPage + 1}
-          loadUserList={this.props.loadUserList}
+          loadUserList={loadUserList}
         />
       )}
-        { currentPage + 2 > 0 && currentPage + 2 < totalElements / limit
+    { currentPage + 2 > 0 && currentPage + 2 < totalElements / limit
       && (
         <PaginationButton
           pageNumber={currentPage + 2}
           key={currentPage + 2}
-          loadUserList={this.props.loadUserList}
+          loadUserList={loadUserList}
         />
       )}
-        { currentPage + 3 > 0 && currentPage + 3 < totalElements / limit && currentPage < 2
+    { currentPage + 3 > 0 && currentPage + 3 < totalElements / limit && currentPage < 2
       && (
         <PaginationButton
           pageNumber={currentPage + 3}
           key={currentPage + 3}
-          loadUserList={this.props.loadUserList}
+          loadUserList={loadUserList}
         />
       )}
-        { currentPage + 4 > 0 && currentPage + 4 < totalElements / limit && currentPage < 1
+    { currentPage + 4 > 0 && currentPage + 4 < totalElements / limit && currentPage < 1
       && (
         <PaginationButton
           pageNumber={currentPage + 4}
           key={currentPage + 4}
-          loadUserList={this.props.loadUserList}
+          loadUserList={loadUserList}
         />
       )}
-      </div>
-    );
-  }
-}
+  </div>
+);
+
+export default Pagination;

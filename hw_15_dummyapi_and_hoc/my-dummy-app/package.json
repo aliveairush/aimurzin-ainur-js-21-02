@@ -37,6 +37,8 @@
       "project": "./tsconfig.json"
     },
     "rules": {
+      "react/require-default-props": "off",
+      "react/function-component-definition": "off",
       "jsx-a11y/mouse-events-have-key-events": "off",
       "linebreak-style": "off",
       "react/jsx-no-constructed-context-values": "off",
