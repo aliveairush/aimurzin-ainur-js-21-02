@@ -1,0 +1,32 @@
+.category-card {
+    background-color: var(--primary-block-bg-color);
+    display: flex;
+    flex-direction: row;
+    min-width: max-content;
+}
+
+.category-card-wrap1 {
+    padding: 10px 10px;
+}
+
+.category-card__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.category-card__description {
+    color: var(--secondary-text-color);
+    font-weight: normal;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+.category-card__title{
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--primary-link-color);
+    font-weight: normal;
+    font-size: 16px;
+}
