@@ -1,0 +1,27 @@
+
+.user-card {
+  border-radius: 3px;
+  box-shadow: 0 1px 1px 2px rgba(176, 176, 176, 0.3);
+  display: flex;
+  background-color: #fff;
+  padding: 10px;
+  transition: background-color 1s ease;
+
+  &__img{
+    border-radius: 3px;
+  }
+
+  &__username{
+    color: #667183;
+    background-color: inherit;
+    margin-left: 15px;
+  }
+
+  &.dark{
+    background-color: #6c6c72;
+  }
+
+  &.dark &__username{
+    color: white;
+  }
+}
