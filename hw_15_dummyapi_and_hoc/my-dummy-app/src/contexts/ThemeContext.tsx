@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode } from 'react';
+import React, { createContext, ReactNode, useState } from 'react';
 
 export interface IThemeContext {
   theme: string,
@@ -11,34 +11,23 @@ interface Props {
   children: ReactNode
 }
 
-interface State {
-  theme: string
-}
+const ThemeContextProvider = ({ children }: Props) => {
+  const prevTheme = localStorage.getItem('theme') || 'light';
+  const [theme, setTheme] = useState(prevTheme);
 
-class ThemeContextProvider extends React.Component<Props, State> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      theme: 'light',
-    };
-
-    this.toggleTheme = this.toggleTheme.bind(this);
-  }
-
-  toggleTheme = () => {
-    this.setState({ theme: this.state.theme === 'light' ? 'dark' : 'light' });
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
+    setTheme(newTheme);
   };
 
-  render() {
-    const { children } = this.props;
-    return (
-      <ThemeContext.Provider
-        value={{ theme: this.state.theme, toggleTheme: this.toggleTheme }}
-      >
-        {children}
-      </ThemeContext.Provider>
-    );
-  }
-}
+  return (
+    <ThemeContext.Provider
+      value={{ theme, toggleTheme }}
+    >
+      {children}
+    </ThemeContext.Provider>
+  );
+};
 
 export default ThemeContextProvider;

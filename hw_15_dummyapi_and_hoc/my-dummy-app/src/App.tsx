@@ -1,56 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.scss';
-import SectionHeader from './components/sectionHeader/SectionHeader';
-import Userlist from './components/userlist/Userlist';
-import SectionFooter from './components/sectionFooter/SectionFooter';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import UserListForm from './forms/userList/UserListForm';
 import ThemeContextProvider, { ThemeContext } from './contexts/ThemeContext';
-import { UserListResponse, UserType } from './types/dummyApiResponses';
-import { getUserList } from './api/dummyApi';
+import EmptyForm from './forms/empty/EmptyForm';
+import UserForm from './forms/userProfile/UserForm';
 
-const App = () => {
-  const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(10);
-  const [totalElements, setTotalElements] = useState(0);
-  const [userList, setUserList] = useState<UserType[]>([]);
-
-  const loadUserList = (newPageNumber: number, loadLimit = limit) => {
-    getUserList(newPageNumber, loadLimit, (resp: UserListResponse) => {
-      setPage(resp.page);
-      setUserList([...resp.data]);
-      setTotalElements(resp.total);
-      setLimit(resp.limit);
-    });
-  };
-
-  useEffect(() => {
-    loadUserList(page, limit);
-  }, []);
-
-  const changeLimit = (newLimit: number) => {
-    setLimit(newLimit);
-    loadUserList(0, newLimit);
-  };
-
-  return (
+const App = () => (
+  <BrowserRouter>
     <ThemeContextProvider>
       <ThemeContext.Consumer>
         {(context) => (
           <div className={`App ${context.theme}`}>
-            <section className="page-layout">
-              <SectionHeader changeLimit={changeLimit} />
-              <Userlist userList={userList} />
-              <SectionFooter
-                loadUserList={loadUserList}
-                currentPage={page}
-                limit={limit}
-                totalElements={totalElements}
-              />
-            </section>
+            <Routes>
+              <Route path="/empty" element={<EmptyForm />} />
+              <Route path="/user/:id" element={<UserForm />} />
+              <Route path="/user" element={<UserListForm />} />
+              <Route path="/" element={<UserListForm />} />
+            </Routes>
           </div>
         )}
       </ThemeContext.Consumer>
     </ThemeContextProvider>
-  );
-};
+  </BrowserRouter>
+
+);
 
 export default App;

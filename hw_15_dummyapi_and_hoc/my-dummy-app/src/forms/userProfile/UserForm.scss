@@ -1,0 +1,28 @@
+.user-profile-info {
+  width: 60vw;
+  max-width: 1280px;
+  padding-top: 20px;
+  background-color: #f7fcfb;
+  height: 100%;
+
+  &__name {
+    width: 100%;
+    background-color: #a3b1ab;
+    padding: 10px 20px 3px 15px;
+    font-size: 30px;
+    font-weight: bolder;
+  }
+  &__image {
+    float: right;
+    border: 1px solid gray;
+  }
+
+  &__other {
+    padding: 15px;
+
+    & h3 {
+      color: #787674;
+      padding: 5px 0;
+    }
+  }
+}

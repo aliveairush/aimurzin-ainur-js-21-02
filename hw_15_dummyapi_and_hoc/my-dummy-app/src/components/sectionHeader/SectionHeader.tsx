@@ -11,9 +11,9 @@ const SectionHeader = ({ changeLimit }: IProps) => (
     <h1>Пользователи</h1>
     <div>
       <span>Показать:</span>
+      <ChangeLimitButton limit={5} changeLimit={changeLimit} />
       <ChangeLimitButton limit={10} changeLimit={changeLimit} />
-      <ChangeLimitButton limit={30} changeLimit={changeLimit} />
-      <ChangeLimitButton limit={100} changeLimit={changeLimit} />
+      <ChangeLimitButton limit={20} changeLimit={changeLimit} />
     </div>
   </div>
 );

@@ -11,77 +11,37 @@ interface IProps {
 
 const Pagination = ({
   currentPage, totalElements, limit, loadUserList,
-}: IProps) => (
-  <div className="pagination">
-    { currentPage - 3 > 0 && totalElements / limit - currentPage < 2
-      && (
-        <PaginationButton
-          pageNumber={currentPage - 4}
-          key={currentPage - 4}
-          loadUserList={loadUserList}
-        />
-      )}
-    { currentPage - 2 > 0 && totalElements / limit - currentPage < 1
-      && (
-        <PaginationButton
-          pageNumber={currentPage - 3}
-          key={currentPage - 3}
-          loadUserList={loadUserList}
-        />
-      )}
-    { currentPage - 1 > 0 && (
-    <PaginationButton
-      pageNumber={currentPage - 2}
-      key={currentPage - 2}
-      loadUserList={loadUserList}
-    />
-    )}
-    { currentPage > 0 && (
-    <PaginationButton
-      pageNumber={currentPage - 1}
-      key={currentPage - 1}
-      loadUserList={loadUserList}
-    />
-    )}
-    <PaginationButton
-      loadUserList={loadUserList}
-      pageNumber={currentPage}
-      key={currentPage}
-      active
-    />
-    { currentPage + 1 > 0 && currentPage + 1 < totalElements / limit
-      && (
-        <PaginationButton
-          pageNumber={currentPage + 1}
-          key={currentPage + 1}
-          loadUserList={loadUserList}
-        />
-      )}
-    { currentPage + 2 > 0 && currentPage + 2 < totalElements / limit
-      && (
-        <PaginationButton
-          pageNumber={currentPage + 2}
-          key={currentPage + 2}
-          loadUserList={loadUserList}
-        />
-      )}
-    { currentPage + 3 > 0 && currentPage + 3 < totalElements / limit && currentPage < 2
-      && (
-        <PaginationButton
-          pageNumber={currentPage + 3}
-          key={currentPage + 3}
-          loadUserList={loadUserList}
-        />
-      )}
-    { currentPage + 4 > 0 && currentPage + 4 < totalElements / limit && currentPage < 1
-      && (
-        <PaginationButton
-          pageNumber={currentPage + 4}
-          key={currentPage + 4}
-          loadUserList={loadUserList}
-        />
-      )}
-  </div>
-);
+}: IProps) => {
+  const totalPages = Math.ceil(totalElements / limit);
+
+  return (
+    <div className="pagination">
+      {/**
+      Шаг 1) Создаем массив чисел всех возможнных страницы
+      Шаг 2) Фильтрацияю. Выбираем 3 отрезка которые могут отображаться и берем по бокам на 1-ну страницу больше
+      Шаг 3) При маппинге проверяем если номер страницы не граничный отображаем кнопку иначе троеточие
+      * */}
+      {Array.from({ length: totalPages }, (v, k) => k)
+        .filter((page) => (page <= 3)
+          || (page >= currentPage - 1 && page <= currentPage + 1)
+          || (page >= totalPages - 4))
+        .map((pageNumber) => {
+          if ((pageNumber <= 2)
+            || (pageNumber >= currentPage - 1 && pageNumber <= currentPage + 1)
+          || (pageNumber >= totalPages - 3)) {
+            return (
+              <PaginationButton
+                pageNumber={pageNumber}
+                key={pageNumber}
+                loadUserList={loadUserList}
+                active={currentPage === pageNumber}
+              />
+            );
+          }
+          return <span>...</span>;
+        })}
+    </div>
+  );
+};
 
 export default Pagination;

@@ -8,7 +8,13 @@ const ThemeToggle = () => (
       <div className="theme-toggle">
         <label htmlFor="toggle">
           Тёмная тема
-          <input type="checkbox" id="toggle" name="toggle" onChange={context.toggleTheme} />
+          <input
+            type="checkbox"
+            checked={context.theme === 'dark'}
+            id="toggle"
+            name="toggle"
+            onChange={context.toggleTheme}
+          />
         </label>
       </div>
     )}
