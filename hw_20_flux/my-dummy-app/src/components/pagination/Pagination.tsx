@@ -6,7 +6,7 @@ interface IProps {
   currentPage: number,
   totalElements: number,
   limit: number,
-  loadUserList: (page: number) => void
+  loadUserList: (page: number, limit: number) => void
 }
 
 const Pagination = ({
@@ -34,11 +34,12 @@ const Pagination = ({
                 pageNumber={pageNumber}
                 key={pageNumber}
                 loadUserList={loadUserList}
+                limit={limit}
                 active={currentPage === pageNumber}
               />
             );
           }
-          return <span>...</span>;
+          return <span key={pageNumber}>...</span>;
         })}
     </div>
   );

@@ -15,10 +15,10 @@ import RegistrationForm from './forms/registration/RegistrationForm';
 const renderPageHeader = () => (
   <Header className="page-header">
     <Menu mode="horizontal" theme="dark">
-      <Menu.Item>
+      <Menu.Item key="users">
         <Link to="/user">Пользователи</Link>
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item key="registration">
         <Link to="/registration">Регистрация</Link>
       </Menu.Item>
     </Menu>

@@ -1,42 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import UserCard from '../../components/userCard/UserCard';
-import { UserListResponse, UserType } from '../../types/dummyApiResponses';
 import ShowIdHelper from '../../wrappers/ShowIdHelper';
 import './UserListForm.scss';
 import SectionHeader from '../../components/sectionHeader/SectionHeader';
 import SectionFooter from '../../components/sectionFooter/SectionFooter';
-import { getUserList } from '../../api/dummyApi';
+import appStore from '../../store/userListStore';
+import { changeContentLimitAction, loadUserListAction } from '../../actions/loadUserListAction';
+import { UserListState } from '../../types/state';
 
 const UserListForm = () => {
-  const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(10);
-  const [totalElements, setTotalElements] = useState(0);
-  const [userList, setUserList] = useState<UserType[]>([]);
-
-  const loadUserList = (newPageNumber: number, loadLimit = limit) => {
-    getUserList(newPageNumber, loadLimit, (resp: UserListResponse) => {
-      setPage(resp.page);
-      setUserList([...resp.data]);
-      setTotalElements(resp.total);
-      setLimit(resp.limit);
-    });
-  };
+  const [state, setState] = useState({
+    page: 0,
+    limit: 10,
+    total: 1,
+    userList: [],
+  } as UserListState);
 
   useEffect(() => {
-    loadUserList(page, limit);
+    setState(appStore.getState);
+    appStore.on('change', () => setState(appStore.getState()));
+    loadUserListAction(state.page, state.limit);
   }, []);
-
-  const changeLimit = (newLimit: number) => {
-    setLimit(newLimit);
-    loadUserList(0, newLimit);
-  };
 
   return (
     <section>
-      <SectionHeader changeLimit={changeLimit} />
+      <SectionHeader changeLimit={changeContentLimitAction} />
       <div className="userlist">
-        {userList.map((elem) => (
-          <ShowIdHelper id={elem.id}>
+        {state.userList.map((elem) => (
+          <ShowIdHelper id={elem.id} key={elem.id}>
             <UserCard
               id={elem.id}
               title={elem.title}
@@ -48,10 +39,10 @@ const UserListForm = () => {
         ))}
       </div>
       <SectionFooter
-        loadUserList={loadUserList}
-        currentPage={page}
-        limit={limit}
-        totalElements={totalElements}
+        loadUserList={loadUserListAction}
+        currentPage={state.page}
+        limit={state.limit}
+        totalElements={state.total}
       />
     </section>
   );

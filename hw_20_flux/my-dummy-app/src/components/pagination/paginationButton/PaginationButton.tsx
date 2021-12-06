@@ -2,13 +2,16 @@ import React from 'react';
 
 interface IProps {
   pageNumber: number,
+  limit: number
   active?: boolean,
-  loadUserList: (page: number) => void
+  loadUserList: (page: number, limit: number) => void
 }
 
-const PaginationButton = ({ pageNumber, active = false, loadUserList }: IProps) => {
+const PaginationButton = ({
+  pageNumber, active = false, loadUserList, limit,
+}: IProps) => {
   const handleClick = () => {
-    loadUserList && loadUserList(pageNumber);
+    loadUserList && loadUserList(pageNumber, limit);
   };
 
   return (
