@@ -1,8 +1,13 @@
-import { UserType } from './dummyApiResponses';
+import { UserProfileType, UserType } from './dummyApiResponses';
 
-export interface UserListState {
+export interface IUserListState {
   userList: Array<UserType>
   total: number;
   page: number;
   limit: number;
+}
+
+export interface IUserProfileState{
+  user: UserProfileType,
+  loading: boolean
 }

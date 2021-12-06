@@ -40,7 +40,7 @@ export const getUserList = (
 
 export const getUserById = (
   id: string,
-  callback: (resp: any) => void,
+  callback: (resp: UserProfileType) => void,
   errorCallback?: (resp: ResponseError) => void,
   finalCallback?: () => void,
 ) => {

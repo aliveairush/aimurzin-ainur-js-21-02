@@ -4,9 +4,9 @@ import ShowIdHelper from '../../wrappers/ShowIdHelper';
 import './UserListForm.scss';
 import SectionHeader from '../../components/sectionHeader/SectionHeader';
 import SectionFooter from '../../components/sectionFooter/SectionFooter';
-import appStore from '../../store/userListStore';
+import userListStore from '../../store/userListStore';
 import { changeContentLimitAction, loadUserListAction } from '../../actions/loadUserListAction';
-import { UserListState } from '../../types/state';
+import { IUserListState } from '../../types/state';
 
 const UserListForm = () => {
   const [state, setState] = useState({
@@ -14,11 +14,11 @@ const UserListForm = () => {
     limit: 10,
     total: 1,
     userList: [],
-  } as UserListState);
+  } as IUserListState);
 
   useEffect(() => {
-    setState(appStore.getState);
-    appStore.on('change', () => setState(appStore.getState()));
+    setState(userListStore.getState);
+    userListStore.on('change', () => setState(userListStore.getState()));
     loadUserListAction(state.page, state.limit);
   }, []);
 

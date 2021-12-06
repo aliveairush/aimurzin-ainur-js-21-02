@@ -1,4 +1,4 @@
-import { UserListResponse } from './dummyApiResponses';
+import { UserListResponse, UserProfileType } from './dummyApiResponses';
 
 export interface ActionType {
   type: string;
@@ -6,4 +6,8 @@ export interface ActionType {
 
 export interface LoadUserListActionType extends ActionType {
   payload: UserListResponse;
+}
+
+export interface LoadUserProfileActionType extends ActionType {
+  payload: UserProfileType;
 }

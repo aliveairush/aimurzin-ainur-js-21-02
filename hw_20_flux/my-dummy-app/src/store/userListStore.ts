@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import { UserListResponse } from '../types/dummyApiResponses';
 import dispatcher from '../dispatcher';
-import { UserListState } from '../types/state';
+import { IUserListState } from '../types/state';
 import { LoadUserListActionType } from '../types/actions';
 import { LOAD_USERLIST_SUCCESS } from '../constants/actions/userlist';
 
@@ -15,7 +15,7 @@ class UserListStore extends EventEmitter {
       page: 0,
       limit: 10,
       total: 1,
-    } as UserListState;
+    } as IUserListState;
     this.getState = this.getState.bind(this);
     this.loadUserListSuccess = this.loadUserListSuccess.bind(this);
   }
@@ -40,8 +40,8 @@ class UserListStore extends EventEmitter {
   }
 }
 
-const appStore = new UserListStore();
+const userListStore = new UserListStore();
 
-dispatcher.register(appStore.handleActions.bind(appStore));
+dispatcher.register(userListStore.handleActions.bind(userListStore));
 
-export default appStore;
+export default userListStore;

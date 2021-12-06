@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ResponseError, UserProfileType } from '../../types/dummyApiResponses';
-import { getUserById } from '../../api/dummyApi';
+import { UserProfileType } from '../../types/dummyApiResponses';
 import useScrollToTop from '../../hooks/useScrollToTop';
 import './UserForm.scss';
+import { loadUserProfileAction } from '../../actions/loadUserProfileAction';
+import userProfileStore from '../../store/userProfileStore';
 
 interface Params {
   id: string
@@ -15,7 +16,11 @@ const UserForm = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getUserById(id, setUser, ({ error }: ResponseError) => alert(error), () => { setLoading(false); });
+    userProfileStore.on('change', () => {
+      setUser(userProfileStore.getState().user);
+      setLoading(userProfileStore.getState().loading);
+    });
+    loadUserProfileAction(id);
   }, []);
 
   return (
