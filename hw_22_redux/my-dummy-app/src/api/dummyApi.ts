@@ -3,51 +3,37 @@ import {
 } from '../constants/dummyApi';
 import { METHOD_GET, METHOD_POST } from '../constants/common';
 import {
-  IUserRegistrationFormType, ResponseError, UserListResponse, UserProfileType,
+  IUserRegistrationFormType, ResponseError, UserProfileType,
 } from '../types/dummyApiResponses';
 
-const doGetRequest = <T>(
+const doGetRequest = (
   path: string,
-  callback: (resp: T) => void,
-  errorCallback?: (resp: ResponseError) => void,
-  finalCallback?: () => void,
   searchParams?: Record<string, any>,
 ) => {
   const url = new URL(path, BASE_URL);
   searchParams && Object.entries(searchParams).forEach((params) => {
     url.searchParams.append(params[0], params[1].toString());
   });
-  fetch(url.toString(), {
+  return fetch(url.toString(), {
     method: METHOD_GET,
     headers: new Headers({
       [APP_ID_FIELD]: APP_ID_VALUE,
     }),
-  }).then((resp) => resp.json())
-    .then(callback)
-    .catch(errorCallback)
-    .finally(finalCallback);
+  }).then((resp) => resp.json());
 };
 
-export const getUserList = (
+export const apiGetUserList = (
   page: number,
   limit: number,
-  callback: (resp: UserListResponse) => void,
-  errorCallback?: (resp: any) => void,
-  finalCallback?: () => void,
-) => {
-  doGetRequest(USER_URL, callback, errorCallback, finalCallback, { [LIMIT_PARAM]: limit, [PAGE_PARAM]: page });
-};
+) => (doGetRequest(USER_URL, { [LIMIT_PARAM]: limit, [PAGE_PARAM]: page }));
 
 export const getUserById = (
   id: string,
-  callback: (resp: any) => void,
-  errorCallback?: (resp: ResponseError) => void,
-  finalCallback?: () => void,
 ) => {
-  doGetRequest(`${USER_URL}/${id}`, callback, errorCallback, finalCallback);
+  doGetRequest(`${USER_URL}/${id}`);
 };
 
-export const postCreateUser = (
+export const apiPostCreateUser = (
   userForm: IUserRegistrationFormType,
   callback: (resp: UserProfileType) => void,
   errorCallback?: (resp: ResponseError) => void,

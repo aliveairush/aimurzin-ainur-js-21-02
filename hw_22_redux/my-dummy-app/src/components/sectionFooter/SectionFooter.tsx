@@ -7,7 +7,7 @@ interface IProps {
   currentPage: number,
   totalElements: number,
   limit: number,
-  loadUserList: (page: number) => void
+  loadUserList: (page: number, limit: number) => void
 }
 
 const SectionFooter = ({

@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import UserCard from '../../components/userCard/UserCard';
-import { UserListResponse, UserType } from '../../types/dummyApiResponses';
+import { UserType } from '../../types/dummyApiResponses';
 import ShowIdHelper from '../../wrappers/ShowIdHelper';
 import './UserListForm.scss';
 import SectionHeader from '../../components/sectionHeader/SectionHeader';
 import SectionFooter from '../../components/sectionFooter/SectionFooter';
-import { getUserList } from '../../api/dummyApi';
+import { State } from '../../types/state';
+import { loadUserListAction } from '../../actions/userListActions';
 
-const UserListForm = () => {
-  const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(10);
-  const [totalElements, setTotalElements] = useState(0);
-  const [userList, setUserList] = useState<UserType[]>([]);
+interface Props {
+  userList: Array<UserType>,
+  page: number,
+  limit: number,
+  totalElements: number,
+  loadUserList: (page: number, limit: number) => void,
+}
 
-  const loadUserList = (newPageNumber: number, loadLimit = limit) => {
-    getUserList(newPageNumber, loadLimit, (resp: UserListResponse) => {
-      setPage(resp.page);
-      setUserList([...resp.data]);
-      setTotalElements(resp.total);
-      setLimit(resp.limit);
-    });
-  };
-
+const UserListForm = ({
+  userList, page, limit, totalElements, loadUserList,
+}: Props) => {
   useEffect(() => {
+    console.log('VIEW: ComponenntDidMount');
     loadUserList(page, limit);
   }, []);
 
   const changeLimit = (newLimit: number) => {
-    setLimit(newLimit);
+    // setLimit(newLimit);
     loadUserList(0, newLimit);
   };
 
@@ -35,8 +35,8 @@ const UserListForm = () => {
     <section>
       <SectionHeader changeLimit={changeLimit} />
       <div className="userlist">
-        {userList.map((elem) => (
-          <ShowIdHelper id={elem.id}>
+        {userList && userList.map((elem) => (
+          <ShowIdHelper id={elem.id} key={elem.id}>
             <UserCard
               id={elem.id}
               title={elem.title}
@@ -57,4 +57,13 @@ const UserListForm = () => {
   );
 };
 
-export default UserListForm;
+const mapStateToProps = (state: State) => ({
+  userList: state.userListState.userList,
+  page: state.userListState.page,
+  limit: state.userListState.limit,
+  totalElements: state.userListState.total,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({ loadUserList: bindActionCreators(loadUserListAction, dispatch) });
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserListForm);

@@ -4,7 +4,7 @@ import {
 } from 'antd';
 import './RegistrationForm.scss';
 import { useNavigate } from 'react-router-dom';
-import { postCreateUser } from '../../api/dummyApi';
+import { apiPostCreateUser } from '../../api/dummyApi';
 import { Gender, IUserRegistrationFormType } from '../../types/dummyApiResponses';
 
 const { Option } = Select;
@@ -94,7 +94,7 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
 
   const onFormSubmit = () => {
-    postCreateUser(userForm, (resp) => {
+    apiPostCreateUser(userForm, (resp) => {
       navigate(`/user/${resp.id}`);
     }, (error) => {
       alert(error);
