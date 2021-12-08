@@ -1,28 +1,32 @@
-/* eslint-disable */
-// @ts-nocheck
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { useParams } from 'react-router-dom';
-import { ResponseError, UserProfileType } from '../../types/dummyApiResponses';
-import { getUserById } from '../../api/dummyApi';
+import { UserProfileType } from '../../types/dummyApiResponses';
 import useScrollToTop from '../../hooks/useScrollToTop';
 import './UserForm.scss';
+import { loadUserProfileAction } from '../../actions/loadUserProfileActions';
+import { IUserProfileStore } from '../../types/state';
 
 interface Params {
-  id: string
+  id: string,
 }
-const UserForm = () => {
+
+interface Props {
+  user: UserProfileType,
+  loading: boolean,
+  loadUser: (userId: string) => void,
+}
+const UserForm = ({ user, loading, loadUser } : Props) => {
   useScrollToTop();
   const { id } = useParams() as Params;
-  const [user, setUser] = useState({} as UserProfileType);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getUserById(id, setUser, ({ error }: ResponseError) => alert(error), () => { setLoading(false); });
+    loadUser(id);
   }, []);
 
   return (
-    loading === true ? <div>Идет загрузка</div> : (
+    loading ? <div>Идет загрузка</div> : (
       <div className="user-profile-info">
         <div className="user-profile-info__image">
           <img src={user.picture} alt={user.firstName} />
@@ -59,4 +63,13 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+const mapStateToProps = (state: IUserProfileStore) => ({
+  user: state.userProfileState.user,
+  loading: state.userProfileState.loading,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  loadUser: bindActionCreators(loadUserProfileAction, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserForm);

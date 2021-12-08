@@ -97,6 +97,7 @@ const RegistrationForm = () => {
     apiPostCreateUser(userForm, (resp) => {
       navigate(`/user/${resp.id}`);
     }, (error) => {
+      // eslint-disable-next-line no-alert
       alert(error);
     }, () => {});
   };
@@ -138,7 +139,6 @@ const RegistrationForm = () => {
       <Form.Item name="gender" label="Gender">
         <Select
           placeholder="Select gender"
-          // onSelect={(e) => setUserForm({ ...userForm, gender: e ? Gender[e.valueOf().toString() as keyof Gender] : Gender.OTHER })}
           onSelect={(e) => {
             setUserForm({ ...userForm, gender: e ? Gender[e.valueOf() as keyof Gender] : Gender.nothing });
           }}

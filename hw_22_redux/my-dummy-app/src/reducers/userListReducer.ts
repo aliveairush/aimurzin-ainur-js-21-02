@@ -14,13 +14,16 @@ const initialState: IUserListState = {
 };
 
 const loadSuccess = (draft: IUserListState, resp: UserListResponse) => {
-  // eslint-disable-next-line no-param-reassign
   draft.userList = resp.data || [];
+  draft.page = resp.page;
   draft.total = resp.total;
   return draft;
 };
 
-const userListReducer = (state = initialState, action: LoadUserListActionType) => produce(state, (draft: IUserListState) => {
+const userListReducer = (
+  state = initialState,
+  action: LoadUserListActionType,
+) => produce(state, (draft: IUserListState) => {
   switch (action.type) {
     case LOAD_USERLIST_SUCCESS: return loadSuccess(draft, action.payload);
     default: return state;

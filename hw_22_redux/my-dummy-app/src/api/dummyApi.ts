@@ -27,11 +27,9 @@ export const apiGetUserList = (
   limit: number,
 ) => (doGetRequest(USER_URL, { [LIMIT_PARAM]: limit, [PAGE_PARAM]: page }));
 
-export const getUserById = (
+export const apiGetUserById = (
   id: string,
-) => {
-  doGetRequest(`${USER_URL}/${id}`);
-};
+) => doGetRequest(`${USER_URL}/${id}`);
 
 export const apiPostCreateUser = (
   userForm: IUserRegistrationFormType,

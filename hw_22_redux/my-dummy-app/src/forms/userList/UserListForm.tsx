@@ -7,8 +7,8 @@ import ShowIdHelper from '../../wrappers/ShowIdHelper';
 import './UserListForm.scss';
 import SectionHeader from '../../components/sectionHeader/SectionHeader';
 import SectionFooter from '../../components/sectionFooter/SectionFooter';
-import { State } from '../../types/state';
-import { loadUserListAction } from '../../actions/userListActions';
+import { IUserListStore } from '../../types/state';
+import { changeContentLimitAction, loadUserListAction } from '../../actions/userListActions';
 
 interface Props {
   userList: Array<UserType>,
@@ -22,12 +22,11 @@ const UserListForm = ({
   userList, page, limit, totalElements, loadUserList,
 }: Props) => {
   useEffect(() => {
-    console.log('VIEW: ComponenntDidMount');
     loadUserList(page, limit);
   }, []);
 
   const changeLimit = (newLimit: number) => {
-    // setLimit(newLimit);
+    changeContentLimitAction(newLimit);
     loadUserList(0, newLimit);
   };
 
@@ -57,13 +56,17 @@ const UserListForm = ({
   );
 };
 
-const mapStateToProps = (state: State) => ({
+const mapStateToProps = (state: IUserListStore) => ({
   userList: state.userListState.userList,
   page: state.userListState.page,
   limit: state.userListState.limit,
   totalElements: state.userListState.total,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({ loadUserList: bindActionCreators(loadUserListAction, dispatch) });
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  loadUserList: bindActionCreators(loadUserListAction, dispatch),
+  changeContendLimit: bindActionCreators(changeContentLimitAction, dispatch),
+
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserListForm);
